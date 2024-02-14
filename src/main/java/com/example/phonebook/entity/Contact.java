@@ -19,5 +19,5 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
 }

@@ -6,9 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/api/v1/contact")
@@ -17,32 +15,25 @@ public class ContactController {
     private final ContactService contactService;
 
 
-    @GetMapping("/message")
-    public String getContactByName(@RequestParam String name) {
-        Optional<String> phoneNumber = contactService.getPhoneNumberByName(name);
-        return phoneNumber.orElse("");
+    @GetMapping
+    @ResponseBody
+    public String getPhoneNumberByName(@RequestParam String name) {
+        return contactService.getPhoneNumberByName(name);
     }
 
     @GetMapping("/exception")
-    public String getContactByNameOrElseThrowException(@RequestParam String name) {
-        Optional<String> phoneNumber = contactService.getPhoneNumberByName(name);
-        return phoneNumber.orElseThrow(() -> new NoSuchElementException("Номер не найден"));
+    public String getPhoneNumberByNameWithException(@RequestParam String name) {
+        return contactService.getPhoneNumberByNameWithException(name);
     }
 
     @GetMapping("/log")
-    public String getContactByNameOrElseLogInfo(@RequestParam String name) {
-        Optional<String> phoneNumber = contactService.getPhoneNumberByName(name);
-        return phoneNumber.orElseGet(() -> {
-                    System.out.println("Номер не найден");
-                    return "";
-                }
-        );
+    public String getPhoneNumberByNameWithLogInfo(@RequestParam String name){
+        return contactService.getPhoneNumberByNameWithLogInfo(name);
     }
 
     @GetMapping("/message")
-    public String getContactByNameOrElseMessage(@RequestParam String name) {
-        Optional<String> phoneNumber = contactService.getPhoneNumberByName(name);
-        return phoneNumber.orElse("Номер не найден");
+    public String getPhoneNumberByNameOrGetMessage(@RequestParam String name) {
+        return contactService.getPhoneNumberByNameOrGetMessage(name);
     }
 }
 
