@@ -1,12 +1,14 @@
 package com.example.phonebook.controller;
 
-import com.example.phonebook.service.ContactService;
+import com.example.phonebook.service.contact.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/v1/contact")
@@ -17,7 +19,7 @@ public class ContactController {
 
     @GetMapping
     @ResponseBody
-    public String getPhoneNumberByName(@RequestParam String name) {
+    public Optional<String> getPhoneNumberByName(@RequestParam String name) {
         return contactService.getPhoneNumberByName(name);
     }
 
