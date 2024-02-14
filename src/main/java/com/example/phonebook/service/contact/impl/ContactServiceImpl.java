@@ -16,11 +16,11 @@ public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
 
     @Override
-    public Optional<String> getPhoneNumberByName(String name){
+    public Optional<String> findPhoneNumberByName(String name){
         return contactRepository.findPhoneNumberByName(name);
     }
     @Override
-    public String getPhoneNumberByNameWithException(String name){
+    public String getPhoneNumberByName(String name){
         return contactRepository.findPhoneNumberByName(name)
                 .orElseThrow(() -> new EntityNotFoundException("Номер не найден"));
     }

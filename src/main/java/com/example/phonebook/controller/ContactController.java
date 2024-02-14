@@ -19,13 +19,13 @@ public class ContactController {
 
     @GetMapping
     @ResponseBody
-    public Optional<String> getPhoneNumberByName(@RequestParam String name) {
-        return contactService.getPhoneNumberByName(name);
+    public Optional<String> findPhoneNumberByName(@RequestParam String name) {
+        return contactService.findPhoneNumberByName(name);
     }
 
     @GetMapping("/exception")
-    public String getPhoneNumberByNameWithException(@RequestParam String name) {
-        return contactService.getPhoneNumberByNameWithException(name);
+    public String getPhoneNumberByName(@RequestParam String name) {
+        return contactService.getPhoneNumberByName(name);
     }
 
     @GetMapping("/log")
